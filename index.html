@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
-    <!-- Leaflet CSS for Interactive Map -->
+    <!-- Leaflet CSS for Interactive Overview Map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     
     <style>
@@ -32,9 +32,6 @@
         .leaflet-tooltip { background: rgba(255, 255, 255, 0.9); border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 4px; font-weight: 600; color: #1e293b; }
         .leaflet-tooltip-left::before { border-left-color: rgba(255, 255, 255, 0.9); }
         .leaflet-tooltip-right::before { border-right-color: rgba(255, 255, 255, 0.9); }
-        
-        /* Ensure leafet controls don't overlap too much on small maps */
-        .leaflet-control-zoom { transform: scale(0.85); transform-origin: top left; }
 
         @media print {
             .sticky-nav, iframe, .copy-btn, #overview-map-container, .leaflet-control-container { display: none !important; }
@@ -91,7 +88,7 @@
         </div>
     </nav>
 
-    <!-- Interactive Overview Map Container -->
+    <!-- Interactive Overview Map Container (Leaflet for Custom Route Drawing) -->
     <div id="overview-map-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 relative z-10">
         <div class="bg-white p-2 rounded-2xl shadow-sm border border-slate-100">
             <div class="flex items-center justify-between px-3 pb-2 pt-1">
@@ -116,8 +113,9 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Guangzhou (广州)</h2>
                 <p class="text-slate-500 text-sm mb-4">The Dim Sum Capital & Historical Core</p>
                 
+                <!-- Interactive Google Map Embed -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative z-0">
-                    <div id="map-leg-1" class="w-full h-full bg-slate-100"></div>
+                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Guangzhou,+Guangdong,+China&t=m&z=11&output=embed&iwloc=near" allowfullscreen></iframe>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -153,8 +151,9 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Changsha (长沙)</h2>
                 <p class="text-slate-500 text-sm mb-4">Fiery Xiang Spice & Energetic Streets</p>
 
+                <!-- Interactive Google Map Embed -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative z-0">
-                    <div id="map-leg-2" class="w-full h-full bg-slate-100"></div>
+                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Changsha,+Hunan,+China&t=m&z=11&output=embed&iwloc=near" allowfullscreen></iframe>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -185,8 +184,9 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Zhangjiajie (张家界)</h2>
                 <p class="text-slate-500 text-sm mb-4">The Avatar Mountains & Winter Frost</p>
 
+                <!-- Interactive Google Map Embed -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative z-0">
-                    <div id="map-leg-3" class="w-full h-full bg-slate-100"></div>
+                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Zhangjiajie,+Hunan,+China&t=m&z=10&output=embed&iwloc=near" allowfullscreen></iframe>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -221,8 +221,9 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Fenghuang (凤凰古城)</h2>
                 <p class="text-amber-700 text-sm mb-4 font-medium">The Moody, 300-Year-Old River Town</p>
 
+                <!-- Interactive Google Map Embed -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-amber-200 mb-5 relative z-0">
-                    <div id="map-leg-3b" class="w-full h-full bg-slate-100"></div>
+                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Fenghuang+Ancient+Town,+Hunan,+China&t=m&z=13&output=embed&iwloc=near" allowfullscreen></iframe>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-700">
@@ -259,8 +260,9 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Shenzhen (深圳)</h2>
                 <p class="text-slate-500 text-sm mb-4">The Cyberpunk Megacity & NYE Spectacle</p>
 
+                <!-- Interactive Google Map Embed -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative z-0">
-                    <div id="map-leg-4" class="w-full h-full bg-slate-100"></div>
+                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Shenzhen,+Guangdong,+China&t=m&z=11&output=embed&iwloc=near" allowfullscreen></iframe>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -294,8 +296,9 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Foshan (佛山) & Shunde (顺德)</h2>
                 <p class="text-slate-500 text-sm mb-4">Kung Fu Heritage & UNESCO Gastronomy</p>
 
+                <!-- Interactive Google Map Embed -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative z-0">
-                    <div id="map-leg-5" class="w-full h-full bg-slate-100"></div>
+                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Foshan,+Guangdong,+China&t=m&z=11&output=embed&iwloc=near" allowfullscreen></iframe>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -330,8 +333,9 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Guangzhou Return (广州)</h2>
                 <p class="text-slate-500 text-sm mb-4">Final Farewell & Departure</p>
 
+                <!-- Interactive Google Map Embed -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative z-0">
-                    <div id="map-leg-6" class="w-full h-full bg-slate-100"></div>
+                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Guangzhou+Baiyun+International+Airport,+China&t=m&z=11&output=embed&iwloc=near" allowfullscreen></iframe>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -355,20 +359,20 @@
     <!-- Leaflet JS for Interactive Map -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
-        // --- 1. Global Map Layer Configuration ---
+        // --- 1. Global Map Layer Configuration (Main Map Only) ---
         const mapTileLayer = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
         const mapAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
         // Grand Loop Coordinates & Colors
         const locations = [
-            { id: 'leg-1', name: "1. Guangzhou", coords: [23.1291, 113.2644], color: '#2563eb' },
-            { id: 'leg-2', name: "2. Changsha", coords: [28.2282, 112.9388], color: '#dc2626' },
-            { id: 'leg-3', name: "3. Zhangjiajie (Plan A)", coords: [29.1170, 110.4791], color: '#06b6d4' },
-            { id: 'leg-4', name: "4. Shenzhen", coords: [22.5431, 114.0579], color: '#a855f7' },
-            { id: 'leg-5', name: "5. Foshan & Shunde", coords: [22.8045, 113.2954], color: '#10b981' },
-            { id: 'leg-6', name: "6. Guangzhou Return", coords: [23.3924, 113.2987], color: '#475569'}
+            { id: 'leg-1', name: "1. Guangzhou 广州", coords: [23.1291, 113.2644], color: '#2563eb' },      // Blue
+            { id: 'leg-2', name: "2. Changsha 长沙", coords: [28.2282, 112.9388], color: '#dc2626' },       // Red
+            { id: 'leg-3', name: "3. Zhangjiajie 张家界 (Plan A)", coords: [29.1170, 110.4791], color: '#06b6d4' }, // Cyan
+            { id: 'leg-4', name: "4. Shenzhen 深圳", coords: [22.5431, 114.0579], color: '#a855f7' },       // Purple
+            { id: 'leg-5', name: "5. Foshan 佛山 & Shunde 顺德", coords: [22.8045, 113.2954], color: '#10b981' }, // Emerald
+            { id: 'leg-6', name: "6. Guangzhou Return 广州", coords: [23.3924, 113.2987], color: '#475569'} // Slate
         ];
-        const altLocation = { id: 'leg-3b', name: "Fenghuang (Plan B)", coords: [27.9482, 109.5989], color: '#f59e0b' };
+        const altLocation = { id: 'leg-3b', name: "Fenghuang 凤凰 (Plan B)", coords: [27.9482, 109.5989], color: '#f59e0b' }; // Amber
         const allLocations = [...locations, altLocation];
 
         // --- 2. Interactive Overview Map Setup ---
@@ -420,38 +424,9 @@
             });
 
             mainMap.fitBounds(bounds, { padding: [40, 40] });
-
-            // --- 3. Individual Mini-Maps Setup ---
-            const initMiniMap = (containerId, coords, markerColor, zoomLevel = 10) => {
-                const mapElement = document.getElementById(containerId);
-                if (!mapElement) return;
-
-                // Disable scroll wheel zoom so users don't get stuck while scrolling the page
-                const miniMap = L.map(containerId, { 
-                    scrollWheelZoom: false,
-                    zoomControl: true 
-                }).setView(coords, zoomLevel);
-
-                L.tileLayer(mapTileLayer, {
-                    attribution: mapAttribution, subdomains: 'abcd', maxZoom: 19
-                }).addTo(miniMap);
-
-                // Add a bold marker for the city
-                L.circleMarker(coords, {
-                    radius: 12, fillColor: markerColor, color: "#ffffff", weight: 3, opacity: 1, fillOpacity: 0.8
-                }).addTo(miniMap);
-            };
-
-            // Initialize each individual city block map
-            allLocations.forEach(loc => {
-                const containerId = 'map-' + loc.id;
-                // Give Fenghuang a slightly tighter zoom since it's a small town
-                const zoom = loc.id === 'leg-3b' ? 12 : 10; 
-                initMiniMap(containerId, loc.coords, loc.color, zoom);
-            });
         });
 
-        // --- 4. Copy to clipboard functionality ---
+        // --- 3. Copy to clipboard functionality ---
         function copyToClipboard(text, btn) {
             const el = document.createElement('textarea');
             el.value = text;
@@ -467,7 +442,7 @@
             }, 1500);
         }
 
-        // --- 5. Scrollspy Navigation Logic ---
+        // --- 4. Scrollspy Navigation Logic ---
         const navColors = {
             'leg-1': 'bg-blue-600',
             'leg-2': 'bg-red-600',
@@ -565,7 +540,7 @@
                 }
             });
 
-            // --- 6. Smart Jump to Current Day logic ---
+            // --- 5. Smart Jump to Current Day logic ---
             const smartJumpToToday = () => {
                 const today = new Date();
                 const month = today.getMonth() + 1; 
