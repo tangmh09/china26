@@ -32,9 +32,12 @@
         .leaflet-tooltip { background: rgba(255, 255, 255, 0.9); border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 4px; font-weight: 600; color: #1e293b; }
         .leaflet-tooltip-left::before { border-left-color: rgba(255, 255, 255, 0.9); }
         .leaflet-tooltip-right::before { border-right-color: rgba(255, 255, 255, 0.9); }
+        
+        /* Ensure leafet controls don't overlap too much on small maps */
+        .leaflet-control-zoom { transform: scale(0.85); transform-origin: top left; }
 
         @media print {
-            .sticky-nav, iframe, .copy-btn, #overview-map-container { display: none !important; }
+            .sticky-nav, iframe, .copy-btn, #overview-map-container, .leaflet-control-container { display: none !important; }
             body { background: white; color: black; }
             .timeline-content { border: 1px solid #ccc; break-inside: avoid; margin-bottom: 20px; box-shadow: none; }
         }
@@ -113,8 +116,8 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Guangzhou (广州)</h2>
                 <p class="text-slate-500 text-sm mb-4">The Dim Sum Capital & Historical Core</p>
                 
-                <div class="w-full h-40 rounded-lg overflow-hidden border border-slate-200 mb-5">
-                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="https://maps.google.com/maps?q=Guangzhou,+China&t=&z=11&ie=UTF8&iwloc=&output=embed"></iframe>
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative z-0">
+                    <div id="map-leg-1" class="w-full h-full bg-slate-100"></div>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -150,8 +153,8 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Changsha (长沙)</h2>
                 <p class="text-slate-500 text-sm mb-4">Fiery Xiang Spice & Energetic Streets</p>
 
-                <div class="w-full h-40 rounded-lg overflow-hidden border border-slate-200 mb-5">
-                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="https://maps.google.com/maps?q=Changsha,+Hunan,+China&t=&z=11&ie=UTF8&iwloc=&output=embed"></iframe>
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative z-0">
+                    <div id="map-leg-2" class="w-full h-full bg-slate-100"></div>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -182,8 +185,8 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Zhangjiajie (张家界)</h2>
                 <p class="text-slate-500 text-sm mb-4">The Avatar Mountains & Winter Frost</p>
 
-                <div class="w-full h-40 rounded-lg overflow-hidden border border-slate-200 mb-5">
-                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="https://maps.google.com/maps?q=Zhangjiajie,+Hunan,+China&t=&z=10&ie=UTF8&iwloc=&output=embed"></iframe>
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative z-0">
+                    <div id="map-leg-3" class="w-full h-full bg-slate-100"></div>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -218,8 +221,8 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Fenghuang (凤凰古城)</h2>
                 <p class="text-amber-700 text-sm mb-4 font-medium">The Moody, 300-Year-Old River Town</p>
 
-                <div class="w-full h-40 rounded-lg overflow-hidden border border-amber-200 mb-5">
-                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="https://maps.google.com/maps?q=Fenghuang+Ancient+Town,+Hunan,+China&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-amber-200 mb-5 relative z-0">
+                    <div id="map-leg-3b" class="w-full h-full bg-slate-100"></div>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-700">
@@ -256,8 +259,8 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Shenzhen (深圳)</h2>
                 <p class="text-slate-500 text-sm mb-4">The Cyberpunk Megacity & NYE Spectacle</p>
 
-                <div class="w-full h-40 rounded-lg overflow-hidden border border-slate-200 mb-5">
-                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="https://maps.google.com/maps?q=Shenzhen,+Guangdong,+China&t=&z=11&ie=UTF8&iwloc=&output=embed"></iframe>
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative z-0">
+                    <div id="map-leg-4" class="w-full h-full bg-slate-100"></div>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -291,8 +294,8 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Foshan (佛山) & Shunde (顺德)</h2>
                 <p class="text-slate-500 text-sm mb-4">Kung Fu Heritage & UNESCO Gastronomy</p>
 
-                <div class="w-full h-40 rounded-lg overflow-hidden border border-slate-200 mb-5">
-                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="https://maps.google.com/maps?q=Foshan,+Guangdong,+China&t=&z=11&ie=UTF8&iwloc=&output=embed"></iframe>
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative z-0">
+                    <div id="map-leg-5" class="w-full h-full bg-slate-100"></div>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -327,8 +330,8 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Guangzhou Return (广州)</h2>
                 <p class="text-slate-500 text-sm mb-4">Final Farewell & Departure</p>
 
-                <div class="w-full h-40 rounded-lg overflow-hidden border border-slate-200 mb-5">
-                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="https://maps.google.com/maps?q=Guangzhou+Baiyun+International+Airport,+China&t=&z=12&ie=UTF8&iwloc=&output=embed"></iframe>
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative z-0">
+                    <div id="map-leg-6" class="w-full h-full bg-slate-100"></div>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -352,54 +355,49 @@
     <!-- Leaflet JS for Interactive Map -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
-        // --- 1. Interactive Overview Map Setup ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const map = L.map('main-map', { scrollWheelZoom: false });
+        // --- 1. Global Map Layer Configuration ---
+        const mapTileLayer = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+        const mapAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        // Grand Loop Coordinates & Colors
+        const locations = [
+            { id: 'leg-1', name: "1. Guangzhou", coords: [23.1291, 113.2644], color: '#2563eb' },
+            { id: 'leg-2', name: "2. Changsha", coords: [28.2282, 112.9388], color: '#dc2626' },
+            { id: 'leg-3', name: "3. Zhangjiajie (Plan A)", coords: [29.1170, 110.4791], color: '#06b6d4' },
+            { id: 'leg-4', name: "4. Shenzhen", coords: [22.5431, 114.0579], color: '#a855f7' },
+            { id: 'leg-5', name: "5. Foshan & Shunde", coords: [22.8045, 113.2954], color: '#10b981' },
+            { id: 'leg-6', name: "6. Guangzhou Return", coords: [23.3924, 113.2987], color: '#475569'}
+        ];
+        const altLocation = { id: 'leg-3b', name: "Fenghuang (Plan B)", coords: [27.9482, 109.5989], color: '#f59e0b' };
+        const allLocations = [...locations, altLocation];
+
+        // --- 2. Interactive Overview Map Setup ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainMap = L.map('main-map', { scrollWheelZoom: false });
+
+            L.tileLayer(mapTileLayer, {
+                attribution: mapAttribution,
                 subdomains: 'abcd',
                 maxZoom: 19
-            }).addTo(map);
-
-            // Grand Loop Coordinates
-            const locations = [
-                { id: 'leg-1', name: "1. Guangzhou 广州", coords: [23.1291, 113.2644], color: '#2563eb' },      // Blue
-                { id: 'leg-2', name: "2. Changsha 长沙", coords: [28.2282, 112.9388], color: '#dc2626' },       // Red
-                { id: 'leg-3', name: "3. Zhangjiajie 张家界 (Plan A)", coords: [29.1170, 110.4791], color: '#06b6d4' }, // Cyan
-                { id: 'leg-4', name: "4. Shenzhen 深圳", coords: [22.5431, 114.0579], color: '#a855f7' },       // Purple
-                { id: 'leg-5', name: "5. Foshan 佛山 & Shunde 顺德", coords: [22.8045, 113.2954], color: '#10b981' }, // Emerald
-                { id: 'leg-6', name: "6. Guangzhou Return 广州", coords: [23.3924, 113.2987], color: '#475569'} // Slate
-            ];
-
-            // Alternative Route Coordinate
-            const altLocation = { id: 'leg-3b', name: "Fenghuang 凤凰 (Plan B)", coords: [27.9482, 109.5989], color: '#f59e0b' }; // Amber
+            }).addTo(mainMap);
 
             // Draw primary route
             const routeCoords = locations.map(loc => loc.coords);
-            L.polyline(routeCoords, { color: '#3b82f6', weight: 3, dashArray: '8, 8', opacity: 0.7 }).addTo(map);
+            L.polyline(routeCoords, { color: '#3b82f6', weight: 3, dashArray: '8, 8', opacity: 0.7 }).addTo(mainMap);
 
             // Draw alternative route (Changsha -> Fenghuang -> Shenzhen)
             L.polyline([locations[1].coords, altLocation.coords, locations[3].coords], { 
                 color: '#f59e0b', weight: 3, dashArray: '6, 6', opacity: 0.8 
-            }).addTo(map);
+            }).addTo(mainMap);
 
             const bounds = L.latLngBounds();
 
-            // Add markers for all locations including alt
-            const allLocations = [...locations, altLocation];
-
-            allLocations.forEach((loc, index) => {
+            allLocations.forEach((loc) => {
                 bounds.extend(loc.coords);
                 
                 const marker = L.circleMarker(loc.coords, {
-                    radius: 7,
-                    fillColor: loc.color,
-                    color: "#ffffff",
-                    weight: 2,
-                    opacity: 1,
-                    fillOpacity: 1
-                }).addTo(map);
+                    radius: 7, fillColor: loc.color, color: "#ffffff", weight: 2, opacity: 1, fillOpacity: 1
+                }).addTo(mainMap);
 
                 // Smart tooltip positioning
                 let tooltipDirection = "right";
@@ -418,14 +416,42 @@
                         window.scrollTo({ top: y, behavior: 'smooth' });
                     }
                 });
-                
                 marker.on('mouseover', function() { this.getElement().style.cursor = 'pointer'; });
             });
 
-            map.fitBounds(bounds, { padding: [40, 40] });
+            mainMap.fitBounds(bounds, { padding: [40, 40] });
+
+            // --- 3. Individual Mini-Maps Setup ---
+            const initMiniMap = (containerId, coords, markerColor, zoomLevel = 10) => {
+                const mapElement = document.getElementById(containerId);
+                if (!mapElement) return;
+
+                // Disable scroll wheel zoom so users don't get stuck while scrolling the page
+                const miniMap = L.map(containerId, { 
+                    scrollWheelZoom: false,
+                    zoomControl: true 
+                }).setView(coords, zoomLevel);
+
+                L.tileLayer(mapTileLayer, {
+                    attribution: mapAttribution, subdomains: 'abcd', maxZoom: 19
+                }).addTo(miniMap);
+
+                // Add a bold marker for the city
+                L.circleMarker(coords, {
+                    radius: 12, fillColor: markerColor, color: "#ffffff", weight: 3, opacity: 1, fillOpacity: 0.8
+                }).addTo(miniMap);
+            };
+
+            // Initialize each individual city block map
+            allLocations.forEach(loc => {
+                const containerId = 'map-' + loc.id;
+                // Give Fenghuang a slightly tighter zoom since it's a small town
+                const zoom = loc.id === 'leg-3b' ? 12 : 10; 
+                initMiniMap(containerId, loc.coords, loc.color, zoom);
+            });
         });
 
-        // --- 2. Copy to clipboard functionality ---
+        // --- 4. Copy to clipboard functionality ---
         function copyToClipboard(text, btn) {
             const el = document.createElement('textarea');
             el.value = text;
@@ -441,7 +467,7 @@
             }, 1500);
         }
 
-        // --- 3. Scrollspy Navigation Logic ---
+        // --- 5. Scrollspy Navigation Logic ---
         const navColors = {
             'leg-1': 'bg-blue-600',
             'leg-2': 'bg-red-600',
@@ -539,7 +565,7 @@
                 }
             });
 
-            // --- 4. Smart Jump to Current Day logic ---
+            // --- 6. Smart Jump to Current Day logic ---
             const smartJumpToToday = () => {
                 const today = new Date();
                 const month = today.getMonth() + 1; 
@@ -549,14 +575,14 @@
                 let targetLeg = null;
 
                 if (year === 2026 && month === 12) {
-                    if (date >= 22 && date <= 24) targetLeg = 'leg-1'; // Guangzhou
-                    else if (date >= 25 && date <= 26) targetLeg = 'leg-2'; // Changsha
-                    else if (date >= 27 && date <= 29) targetLeg = 'leg-3'; // Default to ZJJ for jump
-                    else if (date >= 30 && date <= 31) targetLeg = 'leg-4'; // Shenzhen
+                    if (date >= 22 && date <= 24) targetLeg = 'leg-1'; 
+                    else if (date >= 25 && date <= 26) targetLeg = 'leg-2'; 
+                    else if (date >= 27 && date <= 29) targetLeg = 'leg-3'; 
+                    else if (date >= 30 && date <= 31) targetLeg = 'leg-4'; 
                 } else if (year === 2027 && month === 1) {
-                    if (date === 1) targetLeg = 'leg-4'; // Shenzhen
-                    else if (date >= 2 && date <= 4) targetLeg = 'leg-5'; // Foshan & Shunde
-                    else if (date >= 5 && date <= 6) targetLeg = 'leg-6'; // Guangzhou Return
+                    if (date === 1) targetLeg = 'leg-4'; 
+                    else if (date >= 2 && date <= 4) targetLeg = 'leg-5'; 
+                    else if (date >= 5 && date <= 6) targetLeg = 'leg-6'; 
                 }
 
                 if (targetLeg) {
