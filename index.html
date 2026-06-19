@@ -52,7 +52,7 @@
 
     <!-- Sticky Navigation -->
     <nav class="sticky-nav py-3 px-4 shadow-sm">
-        <div id="nav-container" class="max-w-5xl mx-auto flex overflow-x-auto no-scrollbar gap-2 snap-x">
+        <div id="nav-container" class="max-w-5xl mx-auto flex overflow-x-auto no-scrollbar gap-2 snap-x items-center">
             <a href="#leg-1" class="nav-link snap-center shrink-0 text-center px-4 py-2 rounded-xl transition-all duration-300 text-slate-500 opacity-60 hover:opacity-100" data-leg="leg-1">
                 <div class="font-bold text-sm">Guangzhou</div>
                 <div class="text-[10px] uppercase tracking-wide mt-0.5">Dec 22-24</div>
@@ -65,6 +65,13 @@
                 <div class="font-bold text-sm">Zhangjiajie</div>
                 <div class="text-[10px] uppercase tracking-wide mt-0.5">Dec 27-29</div>
             </a>
+            <!-- Alternative Branch Indicator in Nav -->
+            <div class="text-slate-300 text-xs font-bold px-1 italic">OR</div>
+            <a href="#leg-3b" class="nav-link snap-center shrink-0 text-center px-4 py-2 rounded-xl transition-all duration-300 text-slate-500 opacity-60 hover:opacity-100 border border-transparent" data-leg="leg-3b">
+                <div class="font-bold text-sm text-amber-600"><i class="fas fa-cloud-rain mr-1"></i>Fenghuang</div>
+                <div class="text-[10px] uppercase tracking-wide mt-0.5">Backup</div>
+            </a>
+            <div class="text-slate-300 px-1">→</div>
             <a href="#leg-4" class="nav-link snap-center shrink-0 text-center px-4 py-2 rounded-xl transition-all duration-300 text-slate-500 opacity-60 hover:opacity-100" data-leg="leg-4">
                 <div class="font-bold text-sm">Shenzhen</div>
                 <div class="text-[10px] uppercase tracking-wide mt-0.5">Dec 30-Jan 1</div>
@@ -117,9 +124,8 @@
                     </div>
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-blue-600">Dec 23 (Wed)</div>
-                        <p class="mb-1"><span class="font-semibold">8:30 AM</span> - Morning stroll through Yuexiu Park <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('越秀公园', this)"><i class="far fa-copy"></i></button> to see the Five Rams Statue.</p>
-                        <p class="mb-1"><span class="font-semibold">10:30 AM</span> - Traditional Cantonese Dim Sum. Focus on evaluating the "Big Four": Har Gow, Siu Mai, Char Siu Bao, and Egg Tarts.</p>
-                        <p class="mb-1"><span class="font-semibold">2:00 PM</span> - Walk the tree-lined streets of Shamian Island <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('沙面岛', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p class="mb-1"><span class="font-semibold">8:30 AM</span> - Morning stroll through Yuexiu Park <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('越秀公园', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p class="mb-1"><span class="font-semibold">10:30 AM</span> - Traditional Cantonese Dim Sum. Focus on evaluating the "Big Four".</p>
                         <p><span class="font-semibold">7:00 PM</span> - Canton Tower <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('广州塔', this)"><i class="far fa-copy"></i></button> area for sunset views of the Zhujiang New Town skyline.</p>
                     </div>
                     <div>
@@ -151,24 +157,25 @@
                         <div class="font-bold text-slate-800 mb-1 text-red-600">Dec 25 (Fri)</div>
                         <p class="mb-1"><span class="font-semibold">9:00 AM</span> - High-Speed Rail transit from Guangzhou South to Changsha South (Approx 2.5 hours).</p>
                         <p class="mb-1"><span class="font-semibold">4:00 PM</span> - Dive into the chaotic neon energy of Wuyi Square <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('五一广场', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p><span class="font-semibold">7:30 PM</span> - First encounter with Xiang Cuisine. Seek out Mao's Braised Pork <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('毛氏红烧肉', this)"><i class="far fa-copy"></i></button> (Hongshao Rou) and spicy stir-fried pork.</p>
+                        <p><span class="font-semibold">7:30 PM</span> - First encounter with Xiang Cuisine. Seek out Mao's Braised Pork <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('毛氏红烧肉', this)"><i class="far fa-copy"></i></button> (Hongshao Rou).</p>
                     </div>
                     <div>
                         <div class="font-bold text-slate-800 mb-1 text-red-600">Dec 26 (Sat)</div>
-                        <p class="mb-1"><span class="font-semibold">9:00 AM</span> - Walk the cobblestones of Taiping Old Street <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('太平老街', this)"><i class="far fa-copy"></i></button>, snacking on Stinky Tofu and Sugar Oil Baba.</p>
-                        <p class="mb-1"><span class="font-semibold">12:00 PM</span> - Lunch: Chopped Chili Fish Head <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('剁椒鱼头', this)"><i class="far fa-copy"></i></button> (Duojiao Yutou).</p>
+                        <p class="mb-1"><span class="font-semibold">9:00 AM</span> - Walk the cobblestones of Taiping Old Street <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('太平老街', this)"><i class="far fa-copy"></i></button>, snacking on Stinky Tofu.</p>
+                        <p class="mb-1"><span class="font-semibold">12:00 PM</span> - Lunch: Chopped Chili Fish Head <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('剁椒鱼头', this)"><i class="far fa-copy"></i></button>.</p>
                         <p><span class="font-semibold">8:00 PM</span> - Explore Super Wenheyou <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('超级文和友', this)"><i class="far fa-copy"></i></button>, a multi-story retro 1980s food multiplex.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Leg 3: Zhangjiajie (With Backup Plan) -->
+        <!-- Leg 3: Zhangjiajie (Primary) -->
         <div id="leg-3" class="timeline-item bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow overflow-hidden relative z-10">
             <div class="h-2 w-full bg-cyan-500"></div>
             <div class="p-6">
                 <div class="flex items-center justify-between mb-2">
                     <span class="text-[11px] font-bold tracking-wider text-cyan-600 uppercase bg-cyan-50 py-1 px-2 rounded">Days 6-8 • Dec 27-29</span>
+                    <span class="text-[10px] font-bold text-slate-400 bg-slate-100 px-2 py-1 rounded">PLAN A</span>
                 </div>
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Zhangjiajie</h2>
                 <p class="text-slate-500 text-sm mb-4">The Avatar Mountains & Winter Frost</p>
@@ -195,20 +202,45 @@
                         <p><span class="font-semibold">4:00 PM</span> - Rest up, pack your bags, and prepare for the long-haul bullet train tomorrow back down to the tropics.</p>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Weather Backup Plan Module -->
-                <div class="mt-6 bg-slate-50 border-l-4 border-cyan-500 p-4 rounded-r-lg shadow-sm">
-                    <h4 class="font-bold text-cyan-700 text-sm mb-2"><i class="fas fa-cloud-showers-heavy mr-2"></i>Weather Backup Plan: The Fenghuang Pivot</h4>
-                    <p class="text-xs text-slate-600 leading-relaxed mb-2">
-                        <strong>Check the forecast on Dec 24!</strong> If Zhangjiajie shows 3 days of torrential rain or "whiteout" fog, do not risk the mountain closures.
-                    </p>
-                    <ul class="text-xs text-slate-600 list-disc list-inside space-y-1">
-                        <li><strong>Action:</strong> Cancel your Zhangjiajie hotel on Trip.com.</li>
-                        <li><strong>Pivot:</strong> Book the 1-hour HSR to <strong>Fenghuang Ancient Town (凤凰古城)</strong> instead.</li>
-                        <li><strong>Why:</strong> It's a stunning 300-year-old river valley town that looks <em>better</em> in the rain and mist. No cable cars to close, no mountains to get whited out. Safe, beautiful, and foolproof.</li>
-                    </ul>
+        <!-- Leg 3B: Fenghuang (Weather Backup) -->
+        <div id="leg-3b" class="timeline-item bg-amber-50 rounded-2xl shadow-sm border-2 border-dashed border-amber-300 hover:shadow-md transition-shadow overflow-hidden relative z-10">
+            <div class="h-2 w-full bg-amber-500"></div>
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[11px] font-bold tracking-wider text-amber-700 uppercase bg-amber-200/50 py-1 px-2 rounded"><i class="fas fa-cloud-rain mr-1"></i>Weather Backup</span>
+                    <span class="text-[10px] font-bold text-amber-600 bg-amber-100 px-2 py-1 rounded">PLAN B</span>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-1">Fenghuang</h2>
+                <p class="text-amber-700 text-sm mb-4 font-medium">The Moody, 300-Year-Old River Town</p>
+
+                <div class="w-full h-40 rounded-lg overflow-hidden border border-amber-200 mb-5">
+                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="https://maps.google.com/maps?q=Fenghuang+Ancient+Town,+Hunan,+China&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
                 </div>
 
+                <div class="space-y-4 text-sm text-slate-700">
+                    <p class="text-xs bg-white p-3 rounded border border-amber-200 shadow-sm"><i class="fas fa-info-circle text-amber-500 mr-1"></i><strong>Trigger this plan on Dec 24</strong> if Zhangjiajie forecasts heavy fog/ice. Cancel ZJJ hotels and book HSR to Fenghuanggucheng.</p>
+                    
+                    <div class="border-b border-amber-200 pb-3">
+                        <div class="font-bold text-slate-800 mb-1 text-amber-600">Dec 27 (Sun)</div>
+                        <p class="mb-1"><span class="font-semibold">9:00 AM</span> - High-Speed Rail from Changsha to Fenghuang Ancient Town (Approx 2 hours).</p>
+                        <p class="mb-1"><span class="font-semibold">2:00 PM</span> - Check into a traditional Diaojiaolou (wooden stilt house) right over the Tuojiang River.</p>
+                        <p><span class="font-semibold">6:30 PM</span> - Eat Suantangyu <button class="copy-btn text-amber-500 hover:text-amber-600 ml-1" onclick="copyToClipboard('酸汤鱼', this)"><i class="far fa-copy"></i></button> (Miao Minority Sour Fish Soup) as thousands of lanterns light up the town.</p>
+                    </div>
+                    <div class="border-b border-amber-200 pb-3">
+                        <div class="font-bold text-slate-800 mb-1 text-amber-600">Dec 28 (Mon)</div>
+                        <p class="mb-1"><span class="font-semibold">9:30 AM</span> - Explore the wet cobblestone alleys, Hong Bridge, and the East Gate Tower.</p>
+                        <p class="mb-1"><span class="font-semibold">1:00 PM</span> - Lunch: Smoked La Rou <button class="copy-btn text-amber-500 hover:text-amber-600 ml-1" onclick="copyToClipboard('腊肉', this)"><i class="far fa-copy"></i></button> (Hunan smoked pork) stir-fried with bamboo shoots.</p>
+                        <p><span class="font-semibold">3:00 PM</span> - Rent beautiful traditional Miao silver jewelry and clothing for a moody riverside photoshoot.</p>
+                    </div>
+                    <div>
+                        <div class="font-bold text-slate-800 mb-1 text-amber-600">Dec 29 (Tue)</div>
+                        <p class="mb-1"><span class="font-semibold">9:30 AM</span> - Buy local ginger candy and handmade silver as souvenirs.</p>
+                        <p><span class="font-semibold">12:00 PM</span> - Board the High-Speed train heading south to Shenzhen to rejoin the main itinerary.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -229,13 +261,13 @@
                 <div class="space-y-4 text-sm text-slate-600">
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-purple-600">Dec 30 (Wed)</div>
-                        <p class="mb-1"><span class="font-semibold">9:00 AM</span> - Board the direct High-Speed train from Zhangjiajie to Shenzhen (Approx 6.5 hours). Watch the snow turn back into palm trees.</p>
+                        <p class="mb-1"><span class="font-semibold">Afternoon</span> - Arrive via HSR from Zhangjiajie/Fenghuang. Watch the scenery turn back into tropical palm trees.</p>
                         <p><span class="font-semibold">6:00 PM</span> - Hotel check-in. Explore the cyberpunk/art aesthetic of OCT-LOFT <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('华侨城创意文化园', this)"><i class="far fa-copy"></i></button> for dinner and craft beer.</p>
                     </div>
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-purple-600">Dec 31 (Thu) - NYE</div>
                         <p class="mb-1"><span class="font-semibold">10:00 AM</span> - Ascend the Ping An Finance Center <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('平安金融中心', this)"><i class="far fa-copy"></i></button> (5th tallest building in the world).</p>
-                        <p class="mb-1"><span class="font-semibold">1:30 PM</span> - Lunch: Famous Shenzhen Coconut Chicken Hotpot <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('椰子鸡', this)"><i class="far fa-copy"></i></button>, a sweet and savory local favorite.</p>
+                        <p class="mb-1"><span class="font-semibold">1:30 PM</span> - Lunch: Famous Shenzhen Coconut Chicken Hotpot <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('椰子鸡', this)"><i class="far fa-copy"></i></button>.</p>
                         <p><span class="font-semibold">8:00 PM</span> - Head to Talent Park <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('人才公园', this)"><i class="far fa-copy"></i></button> for the epic synchronized skyscraper LED light show and NYE countdown!</p>
                     </div>
                     <div>
@@ -265,18 +297,18 @@
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-emerald-600">Jan 2 (Sat)</div>
                         <p class="mb-1"><span class="font-semibold">11:00 AM</span> - Short High-Speed Rail transit from Shenzhen over to Shunde.</p>
-                        <p><span class="font-semibold">6:00 PM</span> - Recover from the NYE parties with legendary Shunde Roast Goose <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('顺德烧鹅', this)"><i class="far fa-copy"></i></button>, featuring crispy skin over lychee-wood fire.</p>
+                        <p><span class="font-semibold">6:00 PM</span> - Recover from the NYE parties with legendary Shunde Roast Goose <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('顺德烧鹅', this)"><i class="far fa-copy"></i></button>.</p>
                     </div>
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-emerald-600">Jan 3 (Sun)</div>
-                        <p class="mb-1"><span class="font-semibold">10:30 AM</span> - Relax in Qinghui Garden <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('清晖园', this)"><i class="far fa-copy"></i></button>, one of the four great gardens of Guangdong.</p>
-                        <p class="mb-1"><span class="font-semibold">1:30 PM</span> - Lunch: Shunde Yusheng <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('顺德鱼生', this)"><i class="far fa-copy"></i></button> (Raw fish slices). Marvel at the chef's knife skills slicing river fish paper-thin.</p>
-                        <p><span class="font-semibold">4:00 PM</span> - Afternoon snack of Double-Skin Milk <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('双皮奶', this)"><i class="far fa-copy"></i></button> (Shuangpinai), a specialty made from local water buffalo milk.</p>
+                        <p class="mb-1"><span class="font-semibold">10:30 AM</span> - Relax in Qinghui Garden <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('清晖园', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p class="mb-1"><span class="font-semibold">1:30 PM</span> - Lunch: Shunde Yusheng <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('顺德鱼生', this)"><i class="far fa-copy"></i></button> (Raw fish slices). Marvel at the chef's knife skills.</p>
+                        <p><span class="font-semibold">4:00 PM</span> - Afternoon snack of Double-Skin Milk <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('双皮奶', this)"><i class="far fa-copy"></i></button>.</p>
                     </div>
                     <div>
                         <div class="font-bold text-slate-800 mb-1 text-emerald-600">Jan 4 (Mon)</div>
                         <p class="mb-1"><span class="font-semibold">9:00 AM</span> - Morning boat ride through Fengjian Water Town <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('逢简水乡', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p><span class="font-semibold">12:00 PM</span> - Final Shunde lunch featuring Pan-fried Stuffed Mud Carp (Niang Liyu).</p>
+                        <p><span class="font-semibold">12:00 PM</span> - Final Shunde lunch featuring Pan-fried Stuffed Mud Carp.</p>
                     </div>
                 </div>
             </div>
@@ -331,24 +363,30 @@
             const locations = [
                 { id: 'leg-1', name: "1. Guangzhou", coords: [23.1291, 113.2644], color: '#2563eb' },      // Blue
                 { id: 'leg-2', name: "2. Changsha", coords: [28.2282, 112.9388], color: '#dc2626' },       // Red
-                { id: 'leg-3', name: "3. Zhangjiajie", coords: [29.1170, 110.4791], color: '#06b6d4' },    // Cyan
+                { id: 'leg-3', name: "3. Zhangjiajie (Plan A)", coords: [29.1170, 110.4791], color: '#06b6d4' }, // Cyan
                 { id: 'leg-4', name: "4. Shenzhen", coords: [22.5431, 114.0579], color: '#a855f7' },       // Purple
                 { id: 'leg-5', name: "5. Shunde", coords: [22.8045, 113.2954], color: '#10b981' },         // Emerald
-                { id: 'leg-6', name: "6. Guangzhou (Return)", coords: [23.3924, 113.2987], color: '#475569'}// Slate
+                { id: 'leg-6', name: "6. Guangzhou Return", coords: [23.3924, 113.2987], color: '#475569'} // Slate
             ];
 
-            const routeCoords = locations.map(loc => loc.coords);
+            // Alternative Route Coordinate
+            const altLocation = { id: 'leg-3b', name: "Fenghuang (Plan B)", coords: [27.9482, 109.5989], color: '#f59e0b' }; // Amber
 
-            const polyline = L.polyline(routeCoords, {
-                color: '#3b82f6',
-                weight: 3,
-                dashArray: '8, 8',
-                opacity: 0.7
+            // Draw primary route
+            const routeCoords = locations.map(loc => loc.coords);
+            L.polyline(routeCoords, { color: '#3b82f6', weight: 3, dashArray: '8, 8', opacity: 0.7 }).addTo(map);
+
+            // Draw alternative route (Changsha -> Fenghuang -> Shenzhen)
+            L.polyline([locations[1].coords, altLocation.coords, locations[3].coords], { 
+                color: '#f59e0b', weight: 3, dashArray: '6, 6', opacity: 0.8 
             }).addTo(map);
 
             const bounds = L.latLngBounds();
 
-            locations.forEach((loc, index) => {
+            // Add markers for all locations including alt
+            const allLocations = [...locations, altLocation];
+
+            allLocations.forEach((loc, index) => {
                 bounds.extend(loc.coords);
                 
                 const marker = L.circleMarker(loc.coords, {
@@ -360,19 +398,15 @@
                     fillOpacity: 1
                 }).addTo(map);
 
-                // Adjust text label placement based on geography to prevent overlap
+                // Smart tooltip positioning
                 let tooltipDirection = "right";
                 let tooltipOffset = [10, 0];
-                if (loc.name.includes("Changsha") || loc.name.includes("Zhangjiajie")) {
+                if (loc.name.includes("Changsha") || loc.name.includes("Zhangjiajie") || loc.name.includes("Fenghuang")) {
                     tooltipDirection = "left";
                     tooltipOffset = [-10, 0];
                 }
 
-                marker.bindTooltip(loc.name, { 
-                    permanent: true, 
-                    direction: tooltipDirection,
-                    offset: tooltipOffset
-                });
+                marker.bindTooltip(loc.name, { permanent: true, direction: tooltipDirection, offset: tooltipOffset });
 
                 marker.on('click', () => {
                     const el = document.getElementById(loc.id);
@@ -409,6 +443,7 @@
             'leg-1': 'bg-blue-600',
             'leg-2': 'bg-red-600',
             'leg-3': 'bg-cyan-600',
+            'leg-3b': 'bg-amber-500',
             'leg-4': 'bg-purple-600',
             'leg-5': 'bg-emerald-600',
             'leg-6': 'bg-slate-600'
@@ -429,7 +464,10 @@
                 
                 navLinks.forEach(link => {
                     const targetLeg = link.getAttribute('data-leg');
-                    link.classList.remove(navColors[targetLeg], 'text-white', 'shadow-md', 'scale-105', 'opacity-100');
+                    link.classList.remove(navColors[targetLeg], 'text-white', 'shadow-md', 'scale-105', 'opacity-100', 'border-transparent');
+                    if(targetLeg === 'leg-3b') {
+                         link.classList.remove('border-amber-400', 'bg-amber-50');
+                    }
                     link.classList.add('text-slate-500', 'opacity-60');
                 });
 
@@ -465,7 +503,10 @@
                 const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100;
                 
                 const visibleArray = Array.from(visibleLegs).sort((a, b) => {
-                    return parseInt(a.split('-')[1]) - parseInt(b.split('-')[1]);
+                    // special logic for handling 'b' extensions in IDs for sorting
+                    const valA = a.replace('b', '.5').split('-')[1];
+                    const valB = b.replace('b', '.5').split('-')[1];
+                    return parseFloat(valA) - parseFloat(valB);
                 });
                 
                 if (isAtBottom) {
@@ -508,7 +549,7 @@
                 if (year === 2026 && month === 12) {
                     if (date >= 22 && date <= 24) targetLeg = 'leg-1'; // Guangzhou
                     else if (date >= 25 && date <= 26) targetLeg = 'leg-2'; // Changsha
-                    else if (date >= 27 && date <= 29) targetLeg = 'leg-3'; // Zhangjiajie
+                    else if (date >= 27 && date <= 29) targetLeg = 'leg-3'; // Default to ZJJ for jump
                     else if (date >= 30 && date <= 31) targetLeg = 'leg-4'; // Shenzhen
                 } else if (year === 2027 && month === 1) {
                     if (date === 1) targetLeg = 'leg-4'; // Shenzhen
