@@ -406,74 +406,94 @@
 
         // Grand Loop Coordinates & Colors
         const locations = [
-            { id: 'leg-1', name: "1. Guangzhou 广州", coords: [23.1291, 113.2644], color: '#2563eb' },      // Blue
-            { id: 'leg-2', name: "2. Changsha 长沙", coords: [28.2282, 112.9388], color: '#dc2626' },       // Red
-            { id: 'leg-3', name: "3. Zhangjiajie 张家界 (Plan A)", coords: [29.1170, 110.4791], color: '#06b6d4' }, // Cyan
-            { id: 'leg-4', name: "4. Shenzhen 深圳", coords: [22.5431, 114.0579], color: '#a855f7' },       // Purple
-            { id: 'leg-5', name: "5. Foshan 佛山 & Shunde 顺德", coords: [22.8045, 113.2954], color: '#10b981' }, // Emerald
-            { id: 'leg-6', name: "6. Guangzhou Return 广州", coords: [23.3924, 113.2987], color: '#475569'} // Slate
+            { id: 'leg-1', name: "1. Guangzhou 广州", coords: [23.1291, 113.2644], color: '#2563eb' },
+            { id: 'leg-2', name: "2. Changsha 长沙", coords: [28.2282, 112.9388], color: '#dc2626' },
+            { id: 'leg-3', name: "3. Zhangjiajie 张家界 (Plan A)", coords: [29.1170, 110.4791], color: '#06b6d4' },
+            { id: 'leg-4', name: "4. Shenzhen 深圳", coords: [22.5431, 114.0579], color: '#a855f7' },
+            { id: 'leg-5', name: "5. Foshan 佛山 & Shunde 顺德", coords: [22.8045, 113.2954], color: '#10b981' },
+            { id: 'leg-6', name: "6. Guangzhou Return 广州", coords: [23.3924, 113.2987], color: '#475569'}
         ];
-        const altLocation = { id: 'leg-3b', name: "Fenghuang 凤凰 (Plan B)", coords: [27.9482, 109.5989], color: '#f59e0b' }; // Amber
+        const altLocation = { id: 'leg-3b', name: "Fenghuang 凤凰 (Plan B)", coords: [27.9482, 109.5989], color: '#f59e0b' };
         const allLocations = [...locations, altLocation];
 
-        // --- 2. Interactive Overview Map Setup ---
+        // --- 2. Copy to clipboard functionality ---
+        function copyToClipboard(text, btn) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            const icon = btn.querySelector('i');
+            icon.className = 'fas fa-check text-emerald-500';
+            setTimeout(() => {
+                icon.className = 'far fa-copy';
+            }, 1500);
+        }
+
+        // --- Execute Map and Scroll Logic after DOM loads ---
         document.addEventListener('DOMContentLoaded', () => {
-            const mainMap = L.map('main-map', { scrollWheelZoom: false });
+            
+            // --- 3. Interactive Overview Map Setup ---
+            const mainMapElement = document.getElementById('main-map');
+            if (mainMapElement) {
+                const mainMap = L.map('main-map', { scrollWheelZoom: false });
 
-            L.tileLayer(mapTileLayer, {
-                attribution: mapAttribution,
-                subdomains: '0123',
-                maxZoom: 19
-            }).addTo(mainMap);
-
-            // Draw primary route
-            const routeCoords = locations.map(loc => loc.coords);
-            L.polyline(routeCoords, { color: '#3b82f6', weight: 3, dashArray: '8, 8', opacity: 0.7 }).addTo(mainMap);
-
-            // Draw alternative route (Changsha -> Fenghuang -> Shenzhen)
-            L.polyline([locations[1].coords, altLocation.coords, locations[3].coords], { 
-                color: '#f59e0b', weight: 3, dashArray: '6, 6', opacity: 0.8 
-            }).addTo(mainMap);
-
-            const bounds = L.latLngBounds();
-
-            allLocations.forEach((loc) => {
-                bounds.extend(loc.coords);
-                
-                const marker = L.circleMarker(loc.coords, {
-                    radius: 7, fillColor: loc.color, color: "#ffffff", weight: 2, opacity: 1, fillOpacity: 1
+                L.tileLayer(mapTileLayer, {
+                    attribution: mapAttribution,
+                    subdomains: '0123',
+                    maxZoom: 19
                 }).addTo(mainMap);
 
-                // Smart tooltip positioning
-                let tooltipDirection = "right";
-                let tooltipOffset = [10, 0];
-                if (loc.name.includes("Changsha") || loc.name.includes("Zhangjiajie") || loc.name.includes("Fenghuang")) {
-                    tooltipDirection = "left";
-                    tooltipOffset = [-10, 0];
-                }
+                const routeCoords = locations.map(loc => loc.coords);
+                L.polyline(routeCoords, { color: '#3b82f6', weight: 3, dashArray: '8, 8', opacity: 0.7 }).addTo(mainMap);
 
-                marker.bindTooltip(loc.name, { permanent: true, direction: tooltipDirection, offset: tooltipOffset });
+                L.polyline([locations[1].coords, altLocation.coords, locations[3].coords], { 
+                    color: '#f59e0b', weight: 3, dashArray: '6, 6', opacity: 0.8 
+                }).addTo(mainMap);
 
-                marker.on('click', () => {
-                    const el = document.getElementById(loc.id);
-                    if (el) {
-                        const y = el.getBoundingClientRect().top + window.scrollY - 100;
-                        window.scrollTo({ top: y, behavior: 'smooth' });
+                const bounds = L.latLngBounds();
+
+                allLocations.forEach((loc) => {
+                    bounds.extend(loc.coords);
+                    
+                    const marker = L.circleMarker(loc.coords, {
+                        radius: 7, fillColor: loc.color, color: "#ffffff", weight: 2, opacity: 1, fillOpacity: 1
+                    }).addTo(mainMap);
+
+                    let tooltipDirection = "right";
+                    let tooltipOffset = [10, 0];
+                    if (loc.name.includes("Changsha") || loc.name.includes("Zhangjiajie") || loc.name.includes("Fenghuang")) {
+                        tooltipDirection = "left";
+                        tooltipOffset = [-10, 0];
                     }
+
+                    marker.bindTooltip(loc.name, { permanent: true, direction: tooltipDirection, offset: tooltipOffset });
+
+                    marker.on('click', () => {
+                        const el = document.getElementById(loc.id);
+                        if (el) {
+                            const y = el.getBoundingClientRect().top + window.scrollY - 100;
+                            window.scrollTo({ top: y, behavior: 'smooth' });
+                        }
+                    });
+                    marker.on('mouseover', function() { this.getElement().style.cursor = 'pointer'; });
                 });
-                marker.on('mouseover', function() { this.getElement().style.cursor = 'pointer'; });
-            });
 
-            mainMap.fitBounds(bounds, { padding: [40, 40] });
+                mainMap.fitBounds(bounds, { padding: [40, 40] });
+            }
 
-            // --- Individual Mini-Maps Setup ---
+            // --- 4. Individual Mini-Maps Setup ---
             const initMiniMap = (containerId, coords, markerColor, zoomLevel = 11) => {
                 const mapElement = document.getElementById(containerId);
                 if (!mapElement) return;
 
                 const miniMap = L.map(containerId, { 
-                    scrollWheelZoom: false,
-                    zoomControl: true 
+                    scrollWheelZoom: false, // Prevents scroll traps on desktop
+                    zoomControl: true,      // Ensures + and - buttons are visible
+                    dragging: true,         // Allows 1-finger panning on mobile
+                    tap: true
                 }).setView(coords, zoomLevel);
 
                 L.tileLayer(mapTileLayer, {
@@ -492,9 +512,18 @@
                 const zoom = (loc.id === 'leg-3b' || loc.id === 'leg-3') ? 12 : 11; 
                 initMiniMap(containerId, loc.coords, loc.color, zoom);
             });
-        });
 
-        // --- 2. Copy to clipboard functionality ---
+            // --- 5. Scrollspy Navigation Logic ---
+            const navColors = {
+                'leg-1': 'bg-blue-600',
+                'leg-2': 'bg-red-600',
+                'leg-3': 'bg-cyan-600',
+                'leg-3b': 'bg-amber-500',
+                'leg-4': 'bg-purple-600',
+                'leg-5': 'bg-emerald-600',
+                'leg-6': 'bg-slate-600'
+            };
+
             const navLinks = document.querySelectorAll('.nav-link');
             const navContainer = document.getElementById('nav-container');
             
@@ -521,10 +550,12 @@
                     activeLink.classList.remove('text-slate-500', 'opacity-60');
                     activeLink.classList.add(navColors[activeId], 'text-white', 'shadow-md', 'scale-105', 'opacity-100');
                     
-                    const linkRect = activeLink.getBoundingClientRect();
-                    const containerRect = navContainer.getBoundingClientRect();
-                    if (linkRect.left < containerRect.left || linkRect.right > containerRect.right) {
-                        activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                    if (navContainer) {
+                        const linkRect = activeLink.getBoundingClientRect();
+                        const containerRect = navContainer.getBoundingClientRect();
+                        if (linkRect.left < containerRect.left || linkRect.right > containerRect.right) {
+                            activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        }
                     }
                 }
             }
@@ -581,7 +612,7 @@
                 }
             });
 
-            // --- 5. Smart Jump to Current Day logic ---
+            // --- 6. Smart Jump to Current Day logic ---
             const smartJumpToToday = () => {
                 const today = new Date();
                 const month = today.getMonth() + 1; 
