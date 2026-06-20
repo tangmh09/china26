@@ -31,6 +31,9 @@
         .leaflet-tooltip { background: rgba(255, 255, 255, 0.9); border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 4px; font-weight: 600; color: #1e293b; }
         .leaflet-tooltip-left::before { border-left-color: rgba(255, 255, 255, 0.9); }
         .leaflet-tooltip-right::before { border-right-color: rgba(255, 255, 255, 0.9); }
+        
+        /* Ensure Leaflet zoom controls don't overlap too much on small mobile maps */
+        .leaflet-control-zoom { transform: scale(0.85); transform-origin: top left; }
 
         @media print {
             .sticky-nav, iframe, .copy-btn, #overview-map-container, .leaflet-control-container, .mobile-map-btn { display: none !important; }
@@ -112,10 +115,12 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Guangzhou (广州)</h2>
                 <p class="text-slate-500 text-sm mb-4">The Dim Sum Capital & Historical Core</p>
                 
+                <!-- Hybrid Map Container -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group z-0">
-                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Guangzhou,+Guangdong,+China&t=m&z=11&output=embed&iwloc=near" allowfullscreen></iframe>
-                    <div class="absolute top-2 left-2 bg-slate-900/70 backdrop-blur-sm text-white text-[10px] px-2 py-1 rounded md:hidden pointer-events-none shadow-sm">✌️ Use two fingers to pan</div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Guangzhou,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white text-blue-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md hover:bg-blue-50 transition-colors flex items-center gap-1.5 border border-slate-100 z-20"><i class="fas fa-external-link-alt"></i> Open App</a>
+                    <div id="map-leg-1" class="w-full h-full bg-slate-100 z-0"></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Guangzhou,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-blue-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-white transition-colors flex items-center gap-1 border border-slate-200 z-20">
+                        <i class="fas fa-external-link-alt"></i> App
+                    </a>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -154,10 +159,12 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Changsha (长沙)</h2>
                 <p class="text-slate-500 text-sm mb-4">Fiery Xiang Spice & Energetic Streets</p>
 
+                <!-- Hybrid Map Container -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group z-0">
-                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Changsha,+Hunan,+China&t=m&z=11&output=embed&iwloc=near" allowfullscreen></iframe>
-                    <div class="absolute top-2 left-2 bg-slate-900/70 backdrop-blur-sm text-white text-[10px] px-2 py-1 rounded md:hidden pointer-events-none shadow-sm">✌️ Use two fingers to pan</div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Changsha,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white text-red-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md hover:bg-red-50 transition-colors flex items-center gap-1.5 border border-slate-100 z-20"><i class="fas fa-external-link-alt"></i> Open App</a>
+                    <div id="map-leg-2" class="w-full h-full bg-slate-100 z-0"></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Changsha,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-red-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-white transition-colors flex items-center gap-1 border border-slate-200 z-20">
+                        <i class="fas fa-external-link-alt"></i> App
+                    </a>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -191,10 +198,12 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Zhangjiajie (张家界)</h2>
                 <p class="text-slate-500 text-sm mb-4">The Avatar Mountains & Winter Frost</p>
 
+                <!-- Hybrid Map Container -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group z-0">
-                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Zhangjiajie,+Hunan,+China&t=m&z=10&output=embed&iwloc=near" allowfullscreen></iframe>
-                    <div class="absolute top-2 left-2 bg-slate-900/70 backdrop-blur-sm text-white text-[10px] px-2 py-1 rounded md:hidden pointer-events-none shadow-sm">✌️ Use two fingers to pan</div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Zhangjiajie,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white text-cyan-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md hover:bg-cyan-50 transition-colors flex items-center gap-1.5 border border-slate-100 z-20"><i class="fas fa-external-link-alt"></i> Open App</a>
+                    <div id="map-leg-3" class="w-full h-full bg-slate-100 z-0"></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Zhangjiajie,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-cyan-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-white transition-colors flex items-center gap-1 border border-slate-200 z-20">
+                        <i class="fas fa-external-link-alt"></i> App
+                    </a>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -232,10 +241,12 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Fenghuang (凤凰古城)</h2>
                 <p class="text-amber-700 text-sm mb-4 font-medium">The Moody, 300-Year-Old River Town</p>
 
+                <!-- Hybrid Map Container -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-amber-200 mb-5 relative group z-0">
-                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Fenghuang+Ancient+Town,+Hunan,+China&t=m&z=13&output=embed&iwloc=near" allowfullscreen></iframe>
-                    <div class="absolute top-2 left-2 bg-slate-900/70 backdrop-blur-sm text-white text-[10px] px-2 py-1 rounded md:hidden pointer-events-none shadow-sm">✌️ Use two fingers to pan</div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Fenghuang+Ancient+Town,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white text-amber-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md hover:bg-amber-50 transition-colors flex items-center gap-1.5 border border-slate-100 z-20"><i class="fas fa-external-link-alt"></i> Open App</a>
+                    <div id="map-leg-3b" class="w-full h-full bg-slate-100 z-0"></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Fenghuang+Ancient+Town,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-amber-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-white transition-colors flex items-center gap-1 border border-amber-200 z-20">
+                        <i class="fas fa-external-link-alt"></i> App
+                    </a>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-700">
@@ -274,10 +285,12 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Shenzhen (深圳)</h2>
                 <p class="text-slate-500 text-sm mb-4">The Cyberpunk Megacity & NYE Spectacle</p>
 
+                <!-- Hybrid Map Container -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group z-0">
-                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Shenzhen,+Guangdong,+China&t=m&z=11&output=embed&iwloc=near" allowfullscreen></iframe>
-                    <div class="absolute top-2 left-2 bg-slate-900/70 backdrop-blur-sm text-white text-[10px] px-2 py-1 rounded md:hidden pointer-events-none shadow-sm">✌️ Use two fingers to pan</div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Shenzhen,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white text-purple-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md hover:bg-purple-50 transition-colors flex items-center gap-1.5 border border-slate-100 z-20"><i class="fas fa-external-link-alt"></i> Open App</a>
+                    <div id="map-leg-4" class="w-full h-full bg-slate-100 z-0"></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Shenzhen,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-purple-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-white transition-colors flex items-center gap-1 border border-slate-200 z-20">
+                        <i class="fas fa-external-link-alt"></i> App
+                    </a>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -314,10 +327,12 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Foshan (佛山) & Shunde (顺德)</h2>
                 <p class="text-slate-500 text-sm mb-4">Kung Fu Heritage & UNESCO Gastronomy</p>
 
+                <!-- Hybrid Map Container -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group z-0">
-                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Foshan,+Guangdong,+China&t=m&z=11&output=embed&iwloc=near" allowfullscreen></iframe>
-                    <div class="absolute top-2 left-2 bg-slate-900/70 backdrop-blur-sm text-white text-[10px] px-2 py-1 rounded md:hidden pointer-events-none shadow-sm">✌️ Use two fingers to pan</div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Foshan,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white text-emerald-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md hover:bg-emerald-50 transition-colors flex items-center gap-1.5 border border-slate-100 z-20"><i class="fas fa-external-link-alt"></i> Open App</a>
+                    <div id="map-leg-5" class="w-full h-full bg-slate-100 z-0"></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Foshan,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-emerald-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-emerald-50 transition-colors flex items-center gap-1 border border-slate-200 z-20">
+                        <i class="fas fa-external-link-alt"></i> App
+                    </a>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -354,10 +369,12 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-1">Guangzhou Return (广州)</h2>
                 <p class="text-slate-500 text-sm mb-4">Final Farewell & Departure</p>
 
+                <!-- Hybrid Map Container -->
                 <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group z-0">
-                    <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=Guangzhou+Baiyun+International+Airport,+China&t=m&z=11&output=embed&iwloc=near" allowfullscreen></iframe>
-                    <div class="absolute top-2 left-2 bg-slate-900/70 backdrop-blur-sm text-white text-[10px] px-2 py-1 rounded md:hidden pointer-events-none shadow-sm">✌️ Use two fingers to pan</div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Guangzhou+Baiyun+International+Airport" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white text-slate-600 text-xs font-bold px-3 py-1.5 rounded-lg shadow-md hover:bg-slate-50 transition-colors flex items-center gap-1.5 border border-slate-100 z-20"><i class="fas fa-external-link-alt"></i> Open App</a>
+                    <div id="map-leg-6" class="w-full h-full bg-slate-100 z-0"></div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Guangzhou+Baiyun+International+Airport" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-slate-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-slate-50 transition-colors flex items-center gap-1 border border-slate-200 z-20">
+                        <i class="fas fa-external-link-alt"></i> App
+                    </a>
                 </div>
 
                 <div class="space-y-4 text-sm text-slate-600">
@@ -383,9 +400,9 @@
     <!-- Leaflet JS for Interactive Map -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
-        // --- 1. Global Map Layer Configuration (Main Map Only) ---
-        const mapTileLayer = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
-        const mapAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+        // --- 1. Global Map Layer Configuration (The Magic Google Tiles!) ---
+        const mapTileLayer = 'https://mt{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}';
+        const mapAttribution = '&copy; Google Maps';
 
         // Grand Loop Coordinates & Colors
         const locations = [
@@ -405,7 +422,7 @@
 
             L.tileLayer(mapTileLayer, {
                 attribution: mapAttribution,
-                subdomains: 'abcd',
+                subdomains: '0123',
                 maxZoom: 19
             }).addTo(mainMap);
 
@@ -448,36 +465,36 @@
             });
 
             mainMap.fitBounds(bounds, { padding: [40, 40] });
+
+            // --- Individual Mini-Maps Setup ---
+            const initMiniMap = (containerId, coords, markerColor, zoomLevel = 11) => {
+                const mapElement = document.getElementById(containerId);
+                if (!mapElement) return;
+
+                const miniMap = L.map(containerId, { 
+                    scrollWheelZoom: false,
+                    zoomControl: true 
+                }).setView(coords, zoomLevel);
+
+                L.tileLayer(mapTileLayer, {
+                    subdomains: '0123',
+                    attribution: mapAttribution, 
+                    maxZoom: 19
+                }).addTo(miniMap);
+
+                L.circleMarker(coords, {
+                    radius: 10, fillColor: markerColor, color: "#ffffff", weight: 3, opacity: 1, fillOpacity: 0.8
+                }).addTo(miniMap);
+            };
+
+            allLocations.forEach(loc => {
+                const containerId = 'map-' + loc.id;
+                const zoom = (loc.id === 'leg-3b' || loc.id === 'leg-3') ? 12 : 11; 
+                initMiniMap(containerId, loc.coords, loc.color, zoom);
+            });
         });
 
-        // --- 3. Copy to clipboard functionality ---
-        function copyToClipboard(text, btn) {
-            const el = document.createElement('textarea');
-            el.value = text;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            
-            const icon = btn.querySelector('i');
-            icon.className = 'fas fa-check text-emerald-500';
-            setTimeout(() => {
-                icon.className = 'far fa-copy';
-            }, 1500);
-        }
-
-        // --- 4. Scrollspy Navigation Logic ---
-        const navColors = {
-            'leg-1': 'bg-blue-600',
-            'leg-2': 'bg-red-600',
-            'leg-3': 'bg-cyan-600',
-            'leg-3b': 'bg-amber-500',
-            'leg-4': 'bg-purple-600',
-            'leg-5': 'bg-emerald-600',
-            'leg-6': 'bg-slate-600'
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
+        // --- 2. Copy to clipboard functionality ---
             const navLinks = document.querySelectorAll('.nav-link');
             const navContainer = document.getElementById('nav-container');
             
