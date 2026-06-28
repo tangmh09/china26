@@ -7,11 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
-    <!-- Leaflet CSS for Interactive Map -->
+    <!-- Leaflet CSS for Interactive Overview Map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     
     <style>
-        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #f8fafc; scroll-behavior: smooth; }
+        /* Smooth scrolling applied to HTML element */
+        html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #f8fafc; }
         
         /* Glassmorphism Sticky Nav */
         .sticky-nav {
@@ -31,7 +33,7 @@
         .leaflet-tooltip { background: rgba(255, 255, 255, 0.9); border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 4px; font-weight: 600; color: #1e293b; }
         .leaflet-tooltip-left::before { border-left-color: rgba(255, 255, 255, 0.9); }
         .leaflet-tooltip-right::before { border-right-color: rgba(255, 255, 255, 0.9); }
-        
+
         /* Ensure Leaflet zoom controls don't overlap too much on small mobile maps */
         .leaflet-control-zoom { transform: scale(0.85); transform-origin: top left; }
 
@@ -116,7 +118,7 @@
                 <p class="text-slate-500 text-sm mb-4">The Dim Sum Capital & Historical Core</p>
                 
                 <!-- Hybrid Map Container -->
-                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group z-0">
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group">
                     <div id="map-leg-1" class="w-full h-full bg-slate-100 z-0"></div>
                     <a href="https://www.google.com/maps/search/?api=1&query=Guangzhou,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-blue-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-white transition-colors flex items-center gap-1 border border-slate-200 z-20">
                         <i class="fas fa-external-link-alt"></i> App
@@ -127,23 +129,20 @@
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-blue-600">Dec 22 (Tue)</div>
                         <p class="mb-1"><span class="font-semibold">9:00 PM</span> - Arrival at CAN. High-speed rail to city center and Hotel Check-in.</p>
-                        <p class="mb-1"><span class="font-semibold">10:30 PM</span> - Midnight snack: Jook-sing Noodles (竹升面) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('竹升面', this)"><i class="far fa-copy"></i></button>. Look for noodles hand-pressed with a bamboo pole.</p>
-                        <p><span class="font-semibold">11:30 PM</span> - Walk off the food down Beijing Road Pedestrian Street (北京路步行街) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('北京路步行街', this)"><i class="far fa-copy"></i></button> to see the illuminated ancient road ruins.</p>
+                        <p><span class="font-semibold">10:30 PM</span> - Midnight snack: Jook-sing Noodles (竹升面) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('竹升面', this)"><i class="far fa-copy"></i></button>.</p>
                     </div>
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-blue-600">Dec 23 (Wed)</div>
-                        <p class="mb-1"><span class="font-semibold">8:30 AM</span> - Morning stroll through Yuexiu Park (越秀公园) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('越秀公园', this)"><i class="far fa-copy"></i></button> to see the Five Rams Statue.</p>
-                        <p class="mb-1"><span class="font-semibold">10:30 AM</span> - Traditional Cantonese Dim Sum. Focus on evaluating the "Big Four".</p>
-                        <p class="mb-1"><span class="font-semibold">1:00 PM</span> - Explore the Museum of the Mausoleum of the Nanyue King (南越王博物院) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('南越王博物院', this)"><i class="far fa-copy"></i></button>, an incredible 2,000-year-old tomb discovered in the 1980s.</p>
-                        <p class="mb-1"><span class="font-semibold">4:00 PM</span> - Walk the tree-lined streets of Shamian Island (沙面岛) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('沙面岛', this)"><i class="far fa-copy"></i></button>, admiring the European colonial architecture.</p>
-                        <p><span class="font-semibold">7:30 PM</span> - Zhujiang New Town skyline views. Contrast the towering Canton Tower (广州塔) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('广州塔', this)"><i class="far fa-copy"></i></button> with Zaha Hadid's stunning Guangzhou Opera House (广州大剧院) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('广州大剧院', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p class="mb-1"><span class="font-semibold">8:30 AM</span> - Morning stroll through Yuexiu Park (越秀公园) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('越秀公园', this)"><i class="far fa-copy"></i></button> and the spectacular 2,000-year-old Nanyue King Mausoleum (南越王博物院) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('南越王博物院', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p class="mb-1"><span class="font-semibold">12:30 PM</span> - Traditional Cantonese Dim Sum. Focus on evaluating the "Big Four" classics.</p>
+                        <p class="mb-1"><span class="font-semibold">3:00 PM</span> - Walk Shamian Island (沙面岛) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('沙面岛', this)"><i class="far fa-copy"></i></button> and dive into the wild Qingping Medicine Market (清平中药材市场) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('清平中药材市场', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p><span class="font-semibold">7:30 PM</span> - See the Zaha Hadid Opera House (广州大剧院) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('广州大剧院', this)"><i class="far fa-copy"></i></button> lit up, followed by Canton Tower views.</p>
                     </div>
                     <div>
                         <div class="font-bold text-slate-800 mb-1 text-blue-600">Dec 24 (Thu)</div>
-                        <p class="mb-1"><span class="font-semibold">10:00 AM</span> - Explore the intricate Lingnan woodcarving at the Chen Clan Ancestral Hall (陈家祠) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('陈家祠', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p class="mb-1"><span class="font-semibold">12:30 PM</span> - Wander through Lychee Bay (荔枝湾) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('荔枝湾', this)"><i class="far fa-copy"></i></button> for traditional Xiguan culture, followed by lunch featuring Chu Hou Beef Brisket (柱侯牛腩) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('柱侯牛腩', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p class="mb-1"><span class="font-semibold">3:00 PM</span> - Dive into the fascinating Qingping Medicine Market (清平中药材市场) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('清平中药材市场', this)"><i class="far fa-copy"></i></button> to see mountains of ginseng, dried seahorses, and TCM herbs.</p>
-                        <p><span class="font-semibold">6:30 PM</span> - Pearl River Night Cruise (珠江夜游) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('珠江夜游', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p class="mb-1"><span class="font-semibold">10:30 AM</span> - Explore the ornate Chen Clan Ancestral Hall (陈家祠) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('陈家祠', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p class="mb-1"><span class="font-semibold">1:00 PM</span> - Lunch: Rich Chu Hou Beef Brisket (柱侯牛腩) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('柱侯牛腩', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p><span class="font-semibold">6:00 PM</span> - Pearl River Night Cruise (珠江夜游) <button class="copy-btn text-slate-400 hover:text-blue-500 ml-1" onclick="copyToClipboard('珠江夜游', this)"><i class="far fa-copy"></i></button>.</p>
                     </div>
                 </div>
             </div>
@@ -160,7 +159,7 @@
                 <p class="text-slate-500 text-sm mb-4">Fiery Xiang Spice & Energetic Streets</p>
 
                 <!-- Hybrid Map Container -->
-                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group z-0">
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group">
                     <div id="map-leg-2" class="w-full h-full bg-slate-100 z-0"></div>
                     <a href="https://www.google.com/maps/search/?api=1&query=Changsha,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-red-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-white transition-colors flex items-center gap-1 border border-slate-200 z-20">
                         <i class="fas fa-external-link-alt"></i> App
@@ -171,17 +170,14 @@
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-red-600">Dec 25 (Fri)</div>
                         <p class="mb-1"><span class="font-semibold">9:00 AM</span> - High-Speed Rail transit from Guangzhou South to Changsha South.</p>
-                        <p class="mb-1"><span class="font-semibold">3:00 PM</span> - Grab a cup of Chayan Yuese (茶颜悦色) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('茶颜悦色', this)"><i class="far fa-copy"></i></button>, Changsha's wildly famous modern tea brand.</p>
-                        <p class="mb-1"><span class="font-semibold">4:30 PM</span> - Dive into the chaotic neon energy of Huangxing Road Pedestrian Street (黄兴路步行街) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('黄兴路步行街', this)"><i class="far fa-copy"></i></button> and Wuyi Square (五一广场) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('五一广场', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p><span class="font-semibold">7:30 PM</span> - First encounter with Xiang Cuisine. Seek out Mao's Braised Pork (毛氏红烧肉) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('毛氏红烧肉', this)"><i class="far fa-copy"></i></button> and spicy stir-fried pork.</p>
+                        <p class="mb-1"><span class="font-semibold">4:00 PM</span> - Dive into the chaotic neon energy of Wuyi Square (五一广场) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('五一广场', this)"><i class="far fa-copy"></i></button>. Grab a cup of the famous Sexy Tea (茶颜悦色) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('茶颜悦色', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p><span class="font-semibold">7:30 PM</span> - Seek out Mao's Braised Pork (毛氏红烧肉) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('毛氏红烧肉', this)"><i class="far fa-copy"></i></button> and spicy stir-fried pork.</p>
                     </div>
                     <div>
                         <div class="font-bold text-slate-800 mb-1 text-red-600">Dec 26 (Sat)</div>
-                        <p class="mb-1"><span class="font-semibold">9:00 AM</span> - Walk the cobblestones of Taiping Old Street (太平老街) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('太平老街', this)"><i class="far fa-copy"></i></button>, snacking on Changsha Stinky Tofu (长沙臭豆腐) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('长沙臭豆腐', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p class="mb-1"><span class="font-semibold">9:00 AM</span> - Taiping Old Street (太平老街) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('太平老街', this)"><i class="far fa-copy"></i></button>. Snack on Stinky Tofu.</p>
                         <p class="mb-1"><span class="font-semibold">12:00 PM</span> - Lunch: Chopped Chili Fish Head (剁椒鱼头) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('剁椒鱼头', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p class="mb-1"><span class="font-semibold">3:00 PM</span> - Snap photos with the giant KAWS statues atop the Changsha IFS Tower (长沙IFS) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('长沙IFS', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p class="mb-1"><span class="font-semibold">6:30 PM</span> - Explore Super Wenheyou (超级文和友) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('超级文和友', this)"><i class="far fa-copy"></i></button>, a multi-story retro 1980s food multiplex.</p>
-                        <p><span class="font-semibold">9:30 PM</span> - Late-night street food crawl down Pozi Street (坡子街) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('坡子街', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p><span class="font-semibold">8:00 PM</span> - Explore Super Wenheyou (超级文和友) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('超级文和友', this)"><i class="far fa-copy"></i></button>, then hit Pozi Street (坡子街) <button class="copy-btn text-slate-400 hover:text-red-500 ml-1" onclick="copyToClipboard('坡子街', this)"><i class="far fa-copy"></i></button> for late-night street food.</p>
                     </div>
                 </div>
             </div>
@@ -199,7 +195,7 @@
                 <p class="text-slate-500 text-sm mb-4">The Avatar Mountains & Winter Frost</p>
 
                 <!-- Hybrid Map Container -->
-                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group z-0">
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group">
                     <div id="map-leg-3" class="w-full h-full bg-slate-100 z-0"></div>
                     <a href="https://www.google.com/maps/search/?api=1&query=Zhangjiajie,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-cyan-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-white transition-colors flex items-center gap-1 border border-slate-200 z-20">
                         <i class="fas fa-external-link-alt"></i> App
@@ -210,21 +206,18 @@
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-cyan-600">Dec 27 (Sun)</div>
                         <p class="mb-1"><span class="font-semibold">9:00 AM</span> - High-Speed Rail from Changsha to Zhangjiajie West. Zip up that winter coat!</p>
-                        <p class="mb-1"><span class="font-semibold">2:00 PM</span> - Take the world's longest cable car up Tianmen Mountain (天门山) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('天门山', this)"><i class="far fa-copy"></i></button>. Walk the glass skywalk clinging to the cliffs.</p>
-                        <p><span class="font-semibold">8:00 PM</span> - Watch the spectacular "Charming Xiangxi" (魅力湘西) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('魅力湘西', this)"><i class="far fa-copy"></i></button> cultural performance showcasing local minority folklore.</p>
+                        <p><span class="font-semibold">2:00 PM</span> - Take the world's longest cable car up Tianmen Mountain (天门山) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('天门山', this)"><i class="far fa-copy"></i></button>. Walk the glass skywalk clinging to the cliffs.</p>
                     </div>
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-cyan-600">Dec 28 (Mon)</div>
-                        <p class="mb-1"><span class="font-semibold">8:30 AM</span> - Full day in Zhangjiajie National Forest Park (张家界国家森林公园) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('张家界国家森林公园', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p class="mb-1"><span class="font-semibold">10:00 AM</span> - Explore the majestic "sea of peaks" at Tianzi Mountain (天子山) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('天子山', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p class="mb-1"><span class="font-semibold">1:00 PM</span> - Ride the Bailong Elevator up to Yuanjiajie (袁家界) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('袁家界', this)"><i class="far fa-copy"></i></button> to see the floating "Hallelujah Mountains".</p>
-                        <p><span class="font-semibold">6:30 PM</span> - Warm up with a massive pot of Tujia minority style Sanxiaguo (三下锅) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('三下锅', this)"><i class="far fa-copy"></i></button> hotpot.</p>
+                        <p class="mb-1"><span class="font-semibold">9:00 AM</span> - Full day in Zhangjiajie National Forest Park (张家界国家森林公园) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('张家界国家森林公园', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p class="mb-1"><span class="font-semibold">12:00 PM</span> - Ride the Bailong Elevator up to Yuanjiajie to see the floating "Hallelujah Mountains".</p>
+                        <p><span class="font-semibold">6:30 PM</span> - Warm up with Tujia minority style Sanxiaguo (三下锅) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('三下锅', this)"><i class="far fa-copy"></i></button>. Catch the Charming Xiangxi performance (魅力湘西) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('魅力湘西', this)"><i class="far fa-copy"></i></button> at night!</p>
                     </div>
                     <div>
                         <div class="font-bold text-slate-800 mb-1 text-cyan-600">Dec 29 (Tue)</div>
-                        <p class="mb-1"><span class="font-semibold">9:00 AM</span> - Take a moody, serene boat ride through the gorges of Baofeng Lake (宝峰湖) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('宝峰湖', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p class="mb-1"><span class="font-semibold">1:00 PM</span> - Walk the dizzying heights of the Grand Canyon Glass Bridge (大峡谷玻璃桥) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('大峡谷玻璃桥', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p><span class="font-semibold">4:00 PM</span> - Buy local Tujia embroidery souvenirs and prepare for tomorrow's long bullet train south.</p>
+                        <p class="mb-1"><span class="font-semibold">10:00 AM</span> - Grand Canyon Glass Bridge (大峡谷玻璃桥) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('大峡谷玻璃桥', this)"><i class="far fa-copy"></i></button> or a serene boat ride on Baofeng Lake (宝峰湖) <button class="copy-btn text-slate-400 hover:text-cyan-500 ml-1" onclick="copyToClipboard('宝峰湖', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p><span class="font-semibold">4:00 PM</span> - Prepare for the long-haul bullet train tomorrow back down to the tropics.</p>
                     </div>
                 </div>
             </div>
@@ -242,7 +235,7 @@
                 <p class="text-amber-700 text-sm mb-4 font-medium">The Moody, 300-Year-Old River Town</p>
 
                 <!-- Hybrid Map Container -->
-                <div class="w-full h-48 rounded-lg overflow-hidden border border-amber-200 mb-5 relative group z-0">
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-amber-200 mb-5 relative group">
                     <div id="map-leg-3b" class="w-full h-full bg-slate-100 z-0"></div>
                     <a href="https://www.google.com/maps/search/?api=1&query=Fenghuang+Ancient+Town,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-amber-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-white transition-colors flex items-center gap-1 border border-amber-200 z-20">
                         <i class="fas fa-external-link-alt"></i> App
@@ -256,15 +249,13 @@
                         <div class="font-bold text-slate-800 mb-1 text-amber-600">Dec 27 (Sun)</div>
                         <p class="mb-1"><span class="font-semibold">9:00 AM</span> - High-Speed Rail from Changsha to Fenghuang Ancient Town.</p>
                         <p class="mb-1"><span class="font-semibold">2:00 PM</span> - Check into a traditional Diaojiaolou (wooden stilt house) right over the Tuojiang River.</p>
-                        <p class="mb-1"><span class="font-semibold">5:00 PM</span> - Walk across the ancient Jumping Stones (跳岩) <button class="copy-btn text-amber-500 hover:text-amber-600 ml-1" onclick="copyToClipboard('跳岩', this)"><i class="far fa-copy"></i></button> set right into the riverbed as the sun sets.</p>
-                        <p><span class="font-semibold">7:00 PM</span> - Eat Suantangyu (酸汤鱼) <button class="copy-btn text-amber-500 hover:text-amber-600 ml-1" onclick="copyToClipboard('酸汤鱼', this)"><i class="far fa-copy"></i></button> (Miao Minority Sour Fish Soup) as lanterns light up the town.</p>
+                        <p><span class="font-semibold">6:30 PM</span> - Eat Suantangyu (酸汤鱼) <button class="copy-btn text-amber-500 hover:text-amber-600 ml-1" onclick="copyToClipboard('酸汤鱼', this)"><i class="far fa-copy"></i></button> (Miao Minority Sour Fish Soup) as lanterns light up the town.</p>
                     </div>
                     <div class="border-b border-amber-200 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-amber-600">Dec 28 (Mon)</div>
-                        <p class="mb-1"><span class="font-semibold">9:30 AM</span> - Explore the wet cobblestone alleys, Hong Bridge, and the East Gate Tower.</p>
-                        <p class="mb-1"><span class="font-semibold">1:00 PM</span> - Lunch: Smoked La Rou (腊肉) <button class="copy-btn text-amber-500 hover:text-amber-600 ml-1" onclick="copyToClipboard('腊肉', this)"><i class="far fa-copy"></i></button> (Hunan smoked pork) with bamboo shoots.</p>
-                        <p class="mb-1"><span class="font-semibold">3:00 PM</span> - Rent beautiful traditional Miao silver jewelry for a moody riverside photoshoot.</p>
-                        <p><span class="font-semibold">8:00 PM</span> - Take a scenic sculling boat ride down the Tuojiang River (沱江泛舟) <button class="copy-btn text-amber-500 hover:text-amber-600 ml-1" onclick="copyToClipboard('沱江泛舟', this)"><i class="far fa-copy"></i></button> to see the stilt houses illuminated at night.</p>
+                        <p class="mb-1"><span class="font-semibold">9:30 AM</span> - Explore the wet cobblestone alleys. Take a traditional Tuojiang Boat Ride (沱江泛舟) <button class="copy-btn text-amber-500 hover:text-amber-600 ml-1" onclick="copyToClipboard('沱江泛舟', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p class="mb-1"><span class="font-semibold">1:00 PM</span> - Lunch: Smoked La Rou (腊肉) <button class="copy-btn text-amber-500 hover:text-amber-600 ml-1" onclick="copyToClipboard('腊肉', this)"><i class="far fa-copy"></i></button> (Hunan smoked pork).</p>
+                        <p><span class="font-semibold">3:00 PM</span> - Rent traditional Miao silver jewelry for a photoshoot on the iconic Jumping Stones (跳岩) <button class="copy-btn text-amber-500 hover:text-amber-600 ml-1" onclick="copyToClipboard('跳岩', this)"><i class="far fa-copy"></i></button>.</p>
                     </div>
                     <div>
                         <div class="font-bold text-slate-800 mb-1 text-amber-600">Dec 29 (Tue)</div>
@@ -286,7 +277,7 @@
                 <p class="text-slate-500 text-sm mb-4">The Cyberpunk Megacity & NYE Spectacle</p>
 
                 <!-- Hybrid Map Container -->
-                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group z-0">
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group">
                     <div id="map-leg-4" class="w-full h-full bg-slate-100 z-0"></div>
                     <a href="https://www.google.com/maps/search/?api=1&query=Shenzhen,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-purple-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-white transition-colors flex items-center gap-1 border border-slate-200 z-20">
                         <i class="fas fa-external-link-alt"></i> App
@@ -296,22 +287,19 @@
                 <div class="space-y-4 text-sm text-slate-600">
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-purple-600">Dec 30 (Wed)</div>
-                        <p class="mb-1"><span class="font-semibold">3:00 PM</span> - Arrive via HSR. Watch the scenery turn back into tropical palm trees.</p>
-                        <p class="mb-1"><span class="font-semibold">5:00 PM</span> - Geek out at the Huaqiangbei Electronics Market (华强北) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('华强北', this)"><i class="far fa-copy"></i></button>, the largest electronics hub in the world.</p>
-                        <p><span class="font-semibold">7:30 PM</span> - Explore the cyberpunk/art aesthetic of OCT-LOFT (华侨城创意文化园) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('华侨城创意文化园', this)"><i class="far fa-copy"></i></button> for dinner and craft beer.</p>
+                        <p class="mb-1"><span class="font-semibold">Afternoon</span> - Arrive via HSR. Explore Huaqiangbei (华强北) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('华强北', this)"><i class="far fa-copy"></i></button>, the world's largest electronics market, to soak in the cyberpunk tech vibe.</p>
+                        <p><span class="font-semibold">6:30 PM</span> - Explore the art aesthetic of OCT-LOFT (华侨城创意文化园) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('华侨城创意文化园', this)"><i class="far fa-copy"></i></button> for dinner and craft beer.</p>
                     </div>
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-purple-600">Dec 31 (Thu) - NYE</div>
-                        <p class="mb-1"><span class="font-semibold">10:00 AM</span> - Ascend the Ping An Finance Center (平安金融中心) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('平安金融中心', this)"><i class="far fa-copy"></i></button> (5th tallest building in the world).</p>
+                        <p class="mb-1"><span class="font-semibold">10:00 AM</span> - Ascend the Ping An Finance Center (平安金融中心) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('平安金融中心', this)"><i class="far fa-copy"></i></button>.</p>
                         <p class="mb-1"><span class="font-semibold">1:30 PM</span> - Lunch: Famous Shenzhen Coconut Chicken Hotpot (椰子鸡) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('椰子鸡', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p class="mb-1"><span class="font-semibold">4:00 PM</span> - Snack your way through the incredibly dense Dongmen Pedestrian Street (东门老街) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('东门老街', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p><span class="font-semibold">8:30 PM</span> - Head to Talent Park (人才公园) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('人才公园', this)"><i class="far fa-copy"></i></button> for the epic synchronized skyscraper LED light show and NYE countdown!</p>
+                        <p><span class="font-semibold">7:30 PM</span> - Check out the ship and fountains at Sea World (海上世界) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('海上世界', this)"><i class="far fa-copy"></i></button>, then head to Talent Park (人才公园) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('人才公园', this)"><i class="far fa-copy"></i></button> for the epic LED skyline countdown!</p>
                     </div>
                     <div>
                         <div class="font-bold text-slate-800 mb-1 text-purple-600">Jan 1 (Fri) - New Year's Day</div>
                         <p class="mb-1"><span class="font-semibold">11:00 AM</span> - Slow morning exploring the high-end specialty coffee scene in Nanshan.</p>
-                        <p class="mb-1"><span class="font-semibold">1:30 PM</span> - Visit Sea World in Shekou (海上世界) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('海上世界', this)"><i class="far fa-copy"></i></button> to see the massive grounded Minghua ship surrounded by coastal plazas.</p>
-                        <p><span class="font-semibold">4:00 PM</span> - Relaxing coastal walk along Shenzhen Bay Park (深圳湾公园) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('深圳湾公园', this)"><i class="far fa-copy"></i></button> looking out towards Hong Kong.</p>
+                        <p><span class="font-semibold">2:00 PM</span> - Relaxing coastal walk along Shenzhen Bay Park (深圳湾公园) <button class="copy-btn text-slate-400 hover:text-purple-500 ml-1" onclick="copyToClipboard('深圳湾公园', this)"><i class="far fa-copy"></i></button>.</p>
                     </div>
                 </div>
             </div>
@@ -328,7 +316,7 @@
                 <p class="text-slate-500 text-sm mb-4">Kung Fu Heritage & UNESCO Gastronomy</p>
 
                 <!-- Hybrid Map Container -->
-                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group z-0">
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group">
                     <div id="map-leg-5" class="w-full h-full bg-slate-100 z-0"></div>
                     <a href="https://www.google.com/maps/search/?api=1&query=Foshan,+China" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-emerald-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-emerald-50 transition-colors flex items-center gap-1 border border-slate-200 z-20">
                         <i class="fas fa-external-link-alt"></i> App
@@ -339,21 +327,19 @@
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-emerald-600">Jan 2 (Sat) - Arrival</div>
                         <p class="mb-1"><span class="font-semibold">11:00 AM</span> - Short High-Speed Rail transit from Shenzhen.</p>
-                        <p class="mb-1"><span class="font-semibold">4:30 PM</span> - Take a relaxed evening walk around the Shunde OCT Harbor Plus (顺德欢乐海岸PLUS) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('顺德欢乐海岸PLUS', this)"><i class="far fa-copy"></i></button> dining and entertainment district.</p>
-                        <p><span class="font-semibold">7:00 PM</span> - Recover from NYE with legendary Shunde Roast Goose (顺德烧鹅) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('顺德烧鹅', this)"><i class="far fa-copy"></i></button>, featuring crispy skin over lychee-wood fire.</p>
+                        <p><span class="font-semibold">6:00 PM</span> - Recover from NYE with legendary Shunde Roast Goose (顺德烧鹅) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('顺德烧鹅', this)"><i class="far fa-copy"></i></button>, featuring crispy skin over lychee-wood fire.</p>
                     </div>
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-emerald-600">Jan 3 (Sun) - Foshan Culture</div>
-                        <p class="mb-1"><span class="font-semibold">9:30 AM</span> - Marvel at the Nanfeng Ancient Kiln (南风古灶) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('南风古灶', this)"><i class="far fa-copy"></i></button>, a dragon kiln where the fires have burned continuously for 500 years.</p>
-                        <p class="mb-1"><span class="font-semibold">11:30 AM</span> - Visit the Foshan Ancestral Temple (佛山祖庙) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('佛山祖庙', this)"><i class="far fa-copy"></i></button>. Watch the high-pole Lion Dance and explore the Ip Man & Wong Fei-hung exhibits.</p>
-                        <p class="mb-1"><span class="font-semibold">3:00 PM</span> - Wander through Lingnan Tiandi (岭南天地) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('岭南天地', this)"><i class="far fa-copy"></i></button>, a restored historical district full of alleys, cafes, and pottery.</p>
-                        <p><span class="font-semibold">5:00 PM</span> - Grab traditional Xiqiao Flatbread (西樵大饼) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('西樵大饼', this)"><i class="far fa-copy"></i></button> as a snack before dinner in Chancheng.</p>
+                        <p class="mb-1"><span class="font-semibold">9:30 AM</span> - Visit the active Nanfeng Ancient Kiln (南风古灶) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('南风古灶', this)"><i class="far fa-copy"></i></button>, burning continuously for over 500 years.</p>
+                        <p class="mb-1"><span class="font-semibold">12:30 PM</span> - Visit the Foshan Ancestral Temple (佛山祖庙) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('佛山祖庙', this)"><i class="far fa-copy"></i></button>. Watch the high-pole Lion Dance and explore the Ip Man exhibits.</p>
+                        <p><span class="font-semibold">3:30 PM</span> - Wander through Lingnan Tiandi (岭南天地) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('岭南天地', this)"><i class="far fa-copy"></i></button>, a restored historical district full of alleys and cafes.</p>
                     </div>
                     <div>
                         <div class="font-bold text-slate-800 mb-1 text-emerald-600">Jan 4 (Mon) - Shunde Food</div>
                         <p class="mb-1"><span class="font-semibold">9:30 AM</span> - Relax in Qinghui Garden (清晖园) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('清晖园', this)"><i class="far fa-copy"></i></button>, one of the four great gardens of Guangdong.</p>
-                        <p class="mb-1"><span class="font-semibold">12:00 PM</span> - Lunch: Shunde Yusheng (顺德鱼生) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('顺德鱼生', this)"><i class="far fa-copy"></i></button> (Raw fish slices). Followed by a sweet bowl of Double-Skin Milk (双皮奶) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('双皮奶', this)"><i class="far fa-copy"></i></button> and Lunjiao Cake (伦教糕) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('伦教糕', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p><span class="font-semibold">3:30 PM</span> - Afternoon boat ride through Fengjian Water Town (逢简水乡) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('逢简水乡', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p class="mb-1"><span class="font-semibold">12:00 PM</span> - Lunch: Shunde Yusheng (顺德鱼生) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('顺德鱼生', this)"><i class="far fa-copy"></i></button> (Raw fish slices). Followed by a sweet bowl of Double-Skin Milk (双皮奶) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('双皮奶', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p><span class="font-semibold">3:00 PM</span> - Afternoon boat ride through Fengjian Water Town (逢简水乡) <button class="copy-btn text-slate-400 hover:text-emerald-500 ml-1" onclick="copyToClipboard('逢简水乡', this)"><i class="far fa-copy"></i></button>.</p>
                     </div>
                 </div>
             </div>
@@ -370,7 +356,7 @@
                 <p class="text-slate-500 text-sm mb-4">Final Farewell & Departure</p>
 
                 <!-- Hybrid Map Container -->
-                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group z-0">
+                <div class="w-full h-48 rounded-lg overflow-hidden border border-slate-200 mb-5 relative group">
                     <div id="map-leg-6" class="w-full h-full bg-slate-100 z-0"></div>
                     <a href="https://www.google.com/maps/search/?api=1&query=Guangzhou+Baiyun+International+Airport" target="_blank" class="mobile-map-btn absolute bottom-2 right-2 bg-white/90 backdrop-blur text-slate-600 text-[10px] font-bold px-2 py-1 rounded shadow hover:bg-slate-50 transition-colors flex items-center gap-1 border border-slate-200 z-20">
                         <i class="fas fa-external-link-alt"></i> App
@@ -381,9 +367,7 @@
                     <div class="border-b border-slate-100 pb-3">
                         <div class="font-bold text-slate-800 mb-1 text-slate-600">Jan 5 (Tue)</div>
                         <p class="mb-1"><span class="font-semibold">11:00 AM</span> - Short HSR journey back to Guangzhou.</p>
-                        <p class="mb-1"><span class="font-semibold">1:30 PM</span> - Final dim sum experience inside the classical water gardens of Panxi Restaurant (泮溪酒家) <button class="copy-btn text-slate-400 hover:text-slate-600 ml-1" onclick="copyToClipboard('泮溪酒家', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p class="mb-1"><span class="font-semibold">4:00 PM</span> - Last-minute souvenir and snack shopping down Shangxiajiu Pedestrian Street (上下九步行街) <button class="copy-btn text-slate-400 hover:text-slate-600 ml-1" onclick="copyToClipboard('上下九步行街', this)"><i class="far fa-copy"></i></button>.</p>
-                        <p><span class="font-semibold">7:00 PM</span> - Farewell feast. Go for a grand dish like Cantonese Roast Suckling Pig (烤乳猪) <button class="copy-btn text-slate-400 hover:text-slate-600 ml-1" onclick="copyToClipboard('烤乳猪', this)"><i class="far fa-copy"></i></button>.</p>
+                        <p><span class="font-semibold">7:00 PM</span> - Farewell feast. Opportunity to revisit any favorite Cantonese dishes before heading back to Perth!</p>
                     </div>
                     <div>
                         <div class="font-bold text-slate-800 mb-1 text-slate-600">Jan 6 (Wed)</div>
@@ -560,11 +544,22 @@
                 }
             }
 
+            // *** SMOOTH SCROLL FIX ***
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Stop native instant jump
                     isAutoScrolling = true;
+                    
                     const targetId = link.getAttribute('data-leg');
                     updateHighlight(targetId);
+                    
+                    // Programmatic smooth scroll with 100px offset for the sticky nav
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) {
+                        const offset = 100; 
+                        const y = targetEl.getBoundingClientRect().top + window.scrollY - offset;
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                    }
                     
                     clearTimeout(scrollTimeout);
                     scrollTimeout = setTimeout(() => {
