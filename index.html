@@ -30,9 +30,11 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
         /* Custom Leaflet Tooltip styling */
-        .leaflet-tooltip { background: rgba(255, 255, 255, 0.9); border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 4px; font-weight: 600; color: #1e293b; }
-        .leaflet-tooltip-left::before { border-left-color: rgba(255, 255, 255, 0.9); }
-        .leaflet-tooltip-right::before { border-right-color: rgba(255, 255, 255, 0.9); }
+        .leaflet-tooltip { background: rgba(255, 255, 255, 0.95); border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.15); border-radius: 4px; font-weight: 600; color: #1e293b; padding: 3px 6px; font-size: 11px; white-space: nowrap; }
+        .leaflet-tooltip-left::before { border-left-color: rgba(255, 255, 255, 0.95); }
+        .leaflet-tooltip-right::before { border-right-color: rgba(255, 255, 255, 0.95); }
+        .leaflet-tooltip-top::before { border-top-color: rgba(255, 255, 255, 0.95); }
+        .leaflet-tooltip-bottom::before { border-bottom-color: rgba(255, 255, 255, 0.95); }
 
         /* Ensure Leaflet zoom controls don't overlap too much on small mobile maps */
         .leaflet-control-zoom { transform: scale(0.85); transform-origin: top left; }
@@ -390,14 +392,14 @@
 
         // Grand Loop Coordinates & Colors
         const locations = [
-            { id: 'leg-1', name: "1. Guangzhou 广州", coords: [23.1291, 113.2644], color: '#2563eb' },
-            { id: 'leg-2', name: "2. Changsha 长沙", coords: [28.2282, 112.9388], color: '#dc2626' },
-            { id: 'leg-3', name: "3. Zhangjiajie 张家界 (Plan A)", coords: [29.1170, 110.4791], color: '#06b6d4' },
-            { id: 'leg-4', name: "4. Shenzhen 深圳", coords: [22.5431, 114.0579], color: '#a855f7' },
-            { id: 'leg-5', name: "5. Foshan 佛山 & Shunde 顺德", coords: [22.8045, 113.2954], color: '#10b981' },
-            { id: 'leg-6', name: "6. Guangzhou Return 广州", coords: [23.3924, 113.2987], color: '#475569'}
+            { id: 'leg-1', name: "1. Guangzhou 广州", coords: [23.1291, 113.2644], color: '#2563eb', dir: 'left', off: [-10, 0] },
+            { id: 'leg-2', name: "2. Changsha 长沙", coords: [28.2282, 112.9388], color: '#dc2626', dir: 'right', off: [10, 0] },
+            { id: 'leg-3', name: "3. Zhangjiajie 张家界", coords: [29.1170, 110.4791], color: '#06b6d4', dir: 'top', off: [0, -10] },
+            { id: 'leg-4', name: "4. Shenzhen 深圳", coords: [22.5431, 114.0579], color: '#a855f7', dir: 'right', off: [10, 0] },
+            { id: 'leg-5', name: "5. Foshan 佛山", coords: [22.8045, 113.2954], color: '#10b981', dir: 'bottom', off: [0, 10] },
+            { id: 'leg-6', name: "6. Baiyun Airport", coords: [23.3924, 113.2987], color: '#475569', dir: 'top', off: [0, -10] }
         ];
-        const altLocation = { id: 'leg-3b', name: "Fenghuang 凤凰 (Plan B)", coords: [27.9482, 109.5989], color: '#f59e0b' };
+        const altLocation = { id: 'leg-3b', name: "Fenghuang 凤凰", coords: [27.9482, 109.5989], color: '#f59e0b', dir: 'bottom', off: [0, 10] };
         const allLocations = [...locations, altLocation];
 
         // --- 2. Copy to clipboard functionality ---
@@ -446,14 +448,11 @@
                         radius: 7, fillColor: loc.color, color: "#ffffff", weight: 2, opacity: 1, fillOpacity: 1
                     }).addTo(mainMap);
 
-                    let tooltipDirection = "right";
-                    let tooltipOffset = [10, 0];
-                    if (loc.name.includes("Changsha") || loc.name.includes("Zhangjiajie") || loc.name.includes("Fenghuang")) {
-                        tooltipDirection = "left";
-                        tooltipOffset = [-10, 0];
-                    }
-
-                    marker.bindTooltip(loc.name, { permanent: true, direction: tooltipDirection, offset: tooltipOffset });
+                    marker.bindTooltip(loc.name, { 
+                        permanent: true, 
+                        direction: loc.dir, 
+                        offset: loc.off 
+                    });
 
                     marker.on('click', () => {
                         const el = document.getElementById(loc.id);
@@ -466,6 +465,18 @@
                 });
 
                 mainMap.fitBounds(bounds, { padding: [40, 40] });
+
+                // Smart tooltip hiding on zoom out to prevent clutter
+                mainMap.on('zoom', function() {
+                    const currentZoom = mainMap.getZoom();
+                    const pane = mainMap.getPane('tooltipPane');
+                    if (currentZoom < 6) {
+                        pane.style.opacity = 0;
+                        pane.style.transition = 'opacity 0.2s';
+                    } else {
+                        pane.style.opacity = 1;
+                    }
+                });
             }
 
             // --- 4. Individual Mini-Maps Setup ---
