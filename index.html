@@ -538,7 +538,9 @@
                         const linkRect = activeLink.getBoundingClientRect();
                         const containerRect = navContainer.getBoundingClientRect();
                         if (linkRect.left < containerRect.left || linkRect.right > containerRect.right) {
-                            activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                            // Calculate exact horizontal center and strictly scroll the container only
+                            const scrollPos = activeLink.offsetLeft - (navContainer.offsetWidth / 2) + (activeLink.offsetWidth / 2);
+                            navContainer.scrollTo({ left: scrollPos, behavior: 'smooth' });
                         }
                     }
                 }
